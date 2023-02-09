@@ -58,7 +58,7 @@ export class TxManagerImpl implements TxManager {
         return newCnt.curVal
     }
 
-    startWrite(txParams: TxParams = {}): WriteTxInfo {
+    startWrite(sid: TxId, txParams: TxParams = {}): WriteTxInfo {
         // The following steps must be executed in the given exact order
         // (opposite to one for the READ transaction) as follows:
 
@@ -74,6 +74,7 @@ export class TxManagerImpl implements TxManager {
         const wtxInfo: WriteTxInfo = {
             num: txNum,
             uid: txId,
+            sid: sid,
             params: txParams,
         }
         Logger.debug('[TX] WRITE STARTED', wtxInfo)
